@@ -1,0 +1,18 @@
+<!-- The content below is only a placeholder and can be replaced. -->
+  <div *ngIf="isLogged()" class='log-out'>
+
+    <button mat-raised-button color="primary" (click)='logout()'>Log Out</button>
+  </div>
+  
+  <div [style.display]='flex'>
+    <a routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }" routerLink="/" class="nav-item nav-link">Home</a>
+    <a routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }" routerLink="/users" class="nav-item nav-link">Users</a>
+  </div>
+
+  <h1 style="text-align:center">
+    Welcome to {{ title }}!
+  </h1>
+
+<router-outlet></router-outlet>
+
+

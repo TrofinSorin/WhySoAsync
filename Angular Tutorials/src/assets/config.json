@@ -1,0 +1,4 @@
+{
+  "dogsUrl": "localhost:3000/dogs",
+  "textfile": "assets/textfile.txt"
+}

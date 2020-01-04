@@ -1,0 +1,25 @@
+<form [formGroup]='updatedUserForm' (ngSubmit)='updateUser()'>
+    <mat-form-field>
+        <input formControlName="name" matInput placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select formControlName="userType" placeholder="User Type">
+            <mat-option>None</mat-option>
+            <mat-option value="super-admin">Super Admin</mat-option>
+            <mat-option value="admin">Admin</mat-option>
+            <mat-option value="normal-user">Normal User</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button type='submit' mat-raised-button color="primary">Update User</button>
+</form>
+
+<br />
+
+<form [formGroup]='patchUserForm' (ngSubmit)='patchUser()'>
+    <mat-form-field>
+        <input formControlName="name" matInput placeholder="Name">
+    </mat-form-field>
+
+    <button type='submit' mat-raised-button color="primary">Update User</button>
+</form>

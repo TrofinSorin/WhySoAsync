@@ -1,0 +1,29 @@
+<div class="example-container">
+    <form [formGroup]='userForm' (ngSubmit)='createUser()'>
+        <mat-form-field>
+            <input formControlName="name" matInput placeholder="Name">
+        </mat-form-field>
+      
+        <mat-form-field>
+            <mat-select formControlName="userType" placeholder="User Type">
+                <mat-option value="super-admin">Super Admin</mat-option>
+                <mat-option value="admin">Admin</mat-option>
+                <mat-option value="normal-user">Normal User</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button type='submit' mat-raised-button color="primary">Create User</button>
+    </form>
+</div>
+
+<div class="users" *ngFor='let user of users'>
+    <div class="user">
+        <mat-card (click)='changeUserSelectedStatus(user)'>{{ user.name }}</mat-card>
+        <span [style.marginRight]='"1rem"'>{{ user.userType }}</span>
+        <span [style.marginRight]='"1rem"'>{{ user.selected ? 'Selected' : 'Not Selected' }}</span>
+        <button (click)='deleteUser(user)' mat-raised-button color="primary">Delete</button>
+        <button (click)='showUpdateForm(user)' mat-raised-button color="primary">{{ user.showUpdateForm ? 'Cancel Form' : 'Show Form' }}</button>
+    </div>
+
+    <app-update-user *ngIf='user.showUpdateForm' [user]='user' (refresh)='refreshUsers($event)'></app-update-user>
+</div>
