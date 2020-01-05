@@ -7,27 +7,15 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title = 'LoginApp NodeJS';
+  public title = 'Angular CRUD App';
   public dataReceived: {}[] = [];
 
   constructor(
-    private authenticationService: AuthenticationService,
     private router: Router
     ) {
   }
 
   public ngOnInit(): void {
-  }
-
-  public logout(): any {
-    if (this.isLogged()) {
-      this.authenticationService.logout();
-      this.router.navigate(['/login']);
-    }
-  }
-
-  public isLogged(): boolean {
-    return this.authenticationService.loggedIn();
   }
 }
 

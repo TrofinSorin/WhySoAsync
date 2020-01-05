@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 
@@ -17,9 +15,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [],
-  providers: [
-    AuthGuard
-  ],
+  providers: [],
 })
 
 export class AppRoutingModule {

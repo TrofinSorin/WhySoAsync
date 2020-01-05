@@ -1,22 +1,15 @@
 {
   "users": [
     {
-      "name": "Sorine",
-      "userType": "normal-user",
-      "id": 1,
-      "selected": true
-    },
-    {
-      "name": "Sorine",
+      "name": "PatchedUser",
       "userType": "admin",
-      "id": 2,
-      "selected": true
+      "id": 1,
+      "selected": false
     },
     {
-      "name": "Sorin123555",
+      "name": "PatchedUser",
       "userType": "super-admin",
-      "id": 3,
-      "selected": true
+      "id": 2
     }
   ]
 }

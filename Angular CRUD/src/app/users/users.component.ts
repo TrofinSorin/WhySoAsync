@@ -1,7 +1,8 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserJson } from './../models/user.model';
-import { UserService } from 'src/app/user.service';
-import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { Component, OnInit } from '@angular/core'
+
+import { UserService } from './../user.service'
+import { User } from './../models/user.model'
 
 @Component({
   selector: 'app-users',
@@ -9,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public users: UserJson[];
+  public users: User[];
   public userForm: FormGroup;
 
   constructor(
-    private userService: UserService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private userService: UserService) { }
 
   public ngOnInit(): void {
     this.initUserForm();
@@ -30,45 +31,38 @@ export class UsersComponent implements OnInit {
 
   public getUsers(): void {
     this.userService.getAll().subscribe(response => {
-      console.log('response:', response);
       this.users = response;
     });
   }
 
-  public changeUserSelectedStatus(user: UserJson): void {
+  public createUser(): void {
+    const user = this.userForm.value;
+
+    this.userService.create(user).subscribe(response => {
+      this.getUsers();
+    });
+  }
+
+  public changeUserSelectedStatus(user: User): void {
+    console.log('user', user);
     user.selected = !user.selected;
 
-    this.userService.update(user).subscribe((response: UserJson[]) => {
-      if (response) {
-        console.log('response:', response);
-        this.getUsers();
-      }
-    });
-  }
-
-  public deleteUser(user: UserJson): void {
-    this.userService.delete(user.id).subscribe((response: UserJson) => {
-      console.log('response:', response);
+    this.userService.update(user).subscribe(response => {
       this.getUsers();
     });
   }
 
-  public createUser(): void {
-    console.log('Submited', this.userForm.value);
-
-    this.userService.register(this.userForm.value).subscribe(response => {
+  public delete(user: User) {
+    this.userService.delete(user.id).subscribe(response => {
       this.getUsers();
     });
   }
-  
-  public showUpdateForm(user: UserJson): void {
-    console.log('user:', user);
-    user.showUpdateForm = !user.showUpdateForm;
+
+  public refreshUsers(event: boolean) {
+    this.getUsers();
   }
 
-  public refreshUsers(refresh): void {
-    if (refresh) {
-      this.getUsers();
-    }
+  public showUpdateForm(user: User): void {
+    user.showUpdateUser = !user.showUpdateUser;
   }
 }

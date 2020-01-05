@@ -11,27 +11,27 @@ export class AuthenticationService {
         private securityService: SecurityService
         ) { }
 
-    public login(username: string, password: string) {
-        return this.http.post<any>(this.postsUrl + `/login`, { username: username, password: password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                console.log('usertoken', user);
-                if (user && user.access_token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('access_token', user.access_token);
-                    this.securityService.init(user);
-                    return true;
-                }
-            }));
-    }
+    // public login(username: string, password: string) {
+    //     return this.http.post<any>(this.postsUrl + `/login`, { username: username, password: password })
+    //         .pipe(map(user => {
+    //             // login successful if there's a jwt token in the response
+    //             console.log('usertoken', user);
+    //             if (user && user.access_token) {
+    //                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //                 localStorage.setItem('access_token', user.access_token);
+    //                 this.securityService.init(user);
+    //                 return true;
+    //             }
+    //         }));
+    // }
 
-    public logout() {
-        // remove user from local storage to log user out
-        this.securityService.reset();
-        localStorage.removeItem('access_token');
-    }
+    // public logout() {
+    //     // remove user from local storage to log user out
+    //     this.securityService.reset();
+    //     localStorage.removeItem('access_token');
+    // }
 
-    public loggedIn(): boolean {
-        return (localStorage.getItem('access_token') !== null);
-      }
+    // public loggedIn(): boolean {
+    //     return (localStorage.getItem('access_token') !== null);
+    //   }
 }

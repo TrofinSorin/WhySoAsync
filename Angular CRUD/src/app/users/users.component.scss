@@ -1,26 +1,28 @@
 :host {
-    .users {
-        margin: 0 auto;
-        width: 60%;
-        
-        .user {
-            align-items: center;
-            display: flex;
-            margin-bottom: 1rem;
-            
-            mat-card {
-                background: burlywood;
-                margin-right: 1rem;
-                cursor: pointer;
-            }
-        }
-    }
-
-    form {
+    .create-form {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
         width: 60%;
-        margin-bottom: 3rem;
+    }
+
+    .users {
+        width: 80%;
+        margin: 2rem auto;
+
+        .user {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            mat-card {
+                background-color: burlywood;
+                cursor: pointer;
+            }
+
+            button {
+                margin: 0 .5rem;
+            }
+        }
     }
 }

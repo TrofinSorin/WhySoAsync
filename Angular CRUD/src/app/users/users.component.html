@@ -1,5 +1,5 @@
 <div class="example-container">
-    <form [formGroup]='userForm' (ngSubmit)='createUser()'>
+    <form [formGroup]='userForm' (ngSubmit)='createUser()' class="create-form">
         <mat-form-field>
             <input formControlName="name" matInput placeholder="Name">
         </mat-form-field>
@@ -14,16 +14,16 @@
 
         <button type='submit' mat-raised-button color="primary">Create User</button>
     </form>
-</div>
 
-<div class="users" *ngFor='let user of users'>
-    <div class="user">
-        <mat-card (click)='changeUserSelectedStatus(user)'>{{ user.name }}</mat-card>
-        <span [style.marginRight]='"1rem"'>{{ user.userType }}</span>
-        <span [style.marginRight]='"1rem"'>{{ user.selected ? 'Selected' : 'Not Selected' }}</span>
-        <button (click)='deleteUser(user)' mat-raised-button color="primary">Delete</button>
-        <button (click)='showUpdateForm(user)' mat-raised-button color="primary">{{ user.showUpdateForm ? 'Cancel Form' : 'Show Form' }}</button>
+    <div class="users" *ngFor="let user of users">
+        <div class="user">
+            <mat-card (click)='changeUserSelectedStatus(user)' [style.marginRight]='"1rem"'>{{ user.name }}</mat-card>
+            <span [style.marginRight]='"1rem"'>{{ user.userType }}</span>
+            <span>{{ user.selected ? 'Selected' : 'Not Selected' }}</span>
+            <button (click)='delete(user)' mat-raised-button color="primary">Delete</button>
+            <button (click)='showUpdateForm(user)' mat-raised-button color="primary">{{ user.showUpdateUser ? 'Cancel' : 'Update User'}}</button>
+        </div>
+
+        <app-update-user *ngIf='user.showUpdateUser' [user]='user' (refresh)='refreshUsers($event)'></app-update-user>
     </div>
-
-    <app-update-user *ngIf='user.showUpdateForm' [user]='user' (refresh)='refreshUsers($event)'></app-update-user>
 </div>
