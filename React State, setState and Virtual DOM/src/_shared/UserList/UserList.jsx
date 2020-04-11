@@ -1,31 +1,31 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 //import { Test } from './UserList.styles';
 
-class UserList extends PureComponent { 
+class UserList extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       hasError: false,
-      companyName: 'OldCompany',
+      companyName: "OldCompany",
       users: [
-        {name: 'David', active: true, age: 17},
-        {name: 'Alex', active: false, age: 25},
-        {name: 'John', active: true, age: 35}
-      ]
+        { name: "David", active: true, age: 17 },
+        { name: "Alex", active: false, age: 25 },
+        { name: "John", active: true, age: 35 },
+      ],
     };
   }
 
   componentDidMount = () => {
     setTimeout(() => {
       this.setState({
-        companyName: 'NewCompany'
-      })
-    }, 2000)
-  }
+        companyName: "NewCompany",
+      });
+    }, 2000);
+  };
 
-  render () {
+  render() {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
     }
